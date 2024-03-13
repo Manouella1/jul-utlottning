@@ -1,0 +1,1062 @@
+:root {
+  --red: #a71324;
+  --white: #FEFEFC;
+  --black: #010103;
+  --beige: #EF9967;
+  --green: #35a564;
+  --green-dark: #011409;
+  --size: 40vmin;
+  --pad: 2vmin;
+  --bs-col: 0, 0, 0;
+  --box-shadow-outer: 0 2vmin 2vmin -1vmin rgba(var(--bs-col), 0.15);
+  --box-shadow-inner: inset 0 -2vmin 2vmin -1vmin rgba(var(--bs-col),
+    0.15);
+  --box-shadow-inner-dark: inset -2vmin -4vmin 3vmin -1vmin rgba(var(--bs-col),
+    0.2);
+    font-family: poppins, sans-serif;
+}
+
+/***** SNÖFLINGOR PÅ BODY, (BAKGRUNDEN) *******/
+
+
+  /****** SNÖFLINGOR STYLING PÅ BODYN SLUTAR HÄR ****/
+
+body{
+  color: #004BAD;
+  margin:0;
+  padding:0;
+  background-image:url(snowflake.png);
+  background-size: cover;
+  background-color: #C4E1FF;
+  font-family: poppins, open-sans, tahoma, sans-serif;
+  -webkit-animation: slidein 100s;
+  animation: slidein 100s;
+
+  -webkit-animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
+
+  -webkit-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+
+  -webkit-animation-direction: alternate;
+  animation-direction: alternate;
+  @font-face {
+    font-family: 'MyCustomFont';
+    src: url('SnowtopCaps.ttf') format('woff');
+  }
+}
+
+@-webkit-keyframes slidein {
+  from {
+    background-position: top;
+    background-size: 1900px;
+  }
+  to {
+    background-position: -100px 0px;
+    background-size: 2750px;
+  }
+}
+
+@keyframes slidein {
+  from {
+    background-position: top;
+    background-size: 1900px;
+  }
+  to {
+    background-position: -100px 0px;
+    background-size: 2750px;
+  }
+}
+@mixin el($c, $w: 1, $h: 1, $b: 100%) {
+  width: calc(var(--size) / #{$w});
+  height: calc(var(--size) / #{$h});
+  border-radius: $b;
+  background-color: var(--#{$c});
+}
+
+
+
+#bovisionLogga{
+  max-width: 45%;
+}
+
+// header {
+//   display: flex;
+//   justify-content: space-between;
+//   align-items: center;
+// }
+
+#bovisionLogga {
+  max-width: 25%;
+  margin-left: 2em;
+}
+
+h1 {
+  font-size: 3em;
+  margin: 0 auto; /* This centers the h1 */
+  font-family: "MyCustomFont";
+  text-align: center;
+  color: #004bad;
+}
+
+
+h2{
+  font-weight: 500;
+  margin: auto;
+  text-align: center;
+}
+
+h3{
+  font: weight 300px;
+  color: #004BAD;
+}
+
+
+// =============================
+// Global
+// =============================
+
+
+
+#SantaContainer{
+  min-height: 83vh;
+  box-sizing: border-box;
+  display: grid;
+  grid-gap: var(--pad);
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: auto auto 1fr;
+  align-items: start;
+  justify-items: center;
+  padding: var(--pad);
+  max-width: 100%;
+  max-height: 100%;
+  margin: var(--pad) auto;
+  font-family: 'Helvetica Neue', sans-serif;
+  font-weight: bold;
+  // background: var(--green);
+  @media (max-width: 540px) {
+   min-height: 50vh;
+     }
+
+  @media (min-width: 600px) {
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: auto 1fr;
+  }
+}
+
+
+// =============================
+// Controls
+// =============================
+
+label {
+  justify-self: stretch;
+  cursor: pointer;
+  border: 3px solid var(--green-dark);
+  border-radius: 0.25rem;
+  padding: 0.75rem 0.5rem 0.85rem;
+  color: var(--green-dark);
+  text-align: center;
+  box-shadow:
+    0.25rem 0.25rem 0 rgba(black, 0.15),
+    inset 0.25rem 0.25rem 0 rgba(black, 0.15);
+}
+
+.SantaButton {
+  position: absolute;
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+  clip: rect(1px, 1px, 1px, 1px);
+  white-space: nowrap;
+
+  &:focus + label {
+    outline: 2px dashed yellow;
+    outline-offset: 3px;
+  }
+
+  &:active + label {
+    box-shadow:
+    0.125rem 0.125rem 0 rgba(black, 0.1),
+    inset 0.125rem 0.125rem 0 rgba(black, 0.1);
+    transform: translateY(1px);
+  }
+
+  &:checked + label {
+    border-color: #004BAD;
+    color: #004BAD;
+    box-shadow: none;
+    transform: translateY(1px);
+  }
+}
+
+// =============================
+// Santa Face
+// =============================
+
+.santa {
+  @include el(beige, 1.25, 1, 10vmin 10vmin 100% 100%);
+  grid-column: 1 / -1;
+  align-self: center;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  box-shadow: var(--box-shadow-outer), var(--box-shadow-inner-dark);
+  transform: translateZ(0);
+}
+
+
+// =============================
+// Hat
+// =============================
+
+.hat {
+  position: absolute;
+  bottom: 66%;
+  display: flex;
+  justify-content: center;
+}
+
+.front {
+  @include el(red, 1.25, 1.5, 20vmin 1vmin 0 0);
+  position: relative;
+  display: flex;
+  justify-content: center;
+  z-index: 2;
+  box-shadow: var(--box-shadow-outer), var(--box-shadow-inner);
+
+  &:before {
+    @include el(white, 1, 4, 2vmin 2vmin 2vmin 2vmin);
+    content: '';
+    display: block;
+    position: absolute;
+    bottom: 0;
+    box-shadow: var(--box-shadow-outer), var(--box-shadow-inner-dark);
+  }
+}
+
+.tail {
+  @include el(red, 6, 3.5, 0 5vmin 0.5vmin 0);
+  position: absolute;
+  top: 0;
+  left: 95%;
+  display: flex;
+  justify-content: center;
+  box-shadow: var(--box-shadow-outer), var(--box-shadow-inner-dark);
+
+  &:before {
+    @include el(white, 3, 3);
+    content: '';
+    display: block;
+    position: absolute;
+    top: 94%;
+    z-index: -1;
+    box-shadow: var(--box-shadow-outer), var(--box-shadow-inner-dark);
+  }
+}
+
+
+// =============================
+// Eyes
+// =============================
+
+.eye {
+  @include el(black, 20, 20);
+  position: absolute;
+  top: 40%;
+  display: flex;
+  justify-content: center;
+  z-index: 3;
+  animation: blink 4s ease-out infinite;
+
+  &.left {
+    left: 30%;
+  }
+
+  &.right {
+    right: 30%;
+  }
+
+  @keyframes blink {
+    2.5% { transform: scaleY(0.1) }
+    5%, 100% { transform: scaleY(1) }
+  }
+}
+
+// =============================
+// Eyebrow
+// =============================
+  .brow {
+  position: absolute;
+  top: 31%;
+  box-shadow: var(--box-shadow-outer), var(--box-shadow-inner);
+  z-index: 4;
+  animation: dip 4s ease-out infinite;
+
+  &.left {
+    @include el(white, 5, 10, 20vmin 20vmin 20vmin 0);
+    left: 20%;
+  }
+
+  &.right {
+    @include el(white, 5, 10, 20vmin 20vmin 0 20vmin);
+    right: 20%;
+  }
+
+  @keyframes dip {
+    2.5% { transform: translateY(0.5vmin) }
+    5%, 100% { transform: translateY(0) }
+  }
+}
+
+
+// =============================
+// Nose
+// =============================
+
+.nose {
+  @include el(beige, 5, 5);
+  position: absolute;
+  top: 40%;
+  z-index: 4;
+  box-shadow: var(--box-shadow-outer), var(--box-shadow-inner);
+}
+
+
+// =============================
+// Mustache
+// =============================
+
+.mustache {
+  position: absolute;
+  top: 50%;
+  flex: 1 0 100%;
+  display: flex;
+  justify-content: center;
+  z-index: 3;
+
+  &:before,
+  &:after {
+    content: '';
+    display: block;
+    transform: rotate(0.001deg);
+    box-shadow: var(--box-shadow-outer), var(--box-shadow-inner);
+  }
+
+  &:before {
+    @include el(white, 2, 5, 20vmin 0 20vmin 0);
+    margin-right: -2vmin;
+  }
+
+  &:after {
+    @include el(white, 2, 5, 0 20vmin 0 20vmin);
+  }
+}
+
+
+// =============================
+// Mouth
+// =============================
+
+.mouth {
+  @include el(black, 5, 5);
+  position: absolute;
+  bottom: 25%;
+  z-index: 2;
+  transform-origin: 50% 0;
+  transform: scaleY(0.1);
+}
+
+
+// =============================
+// Beard
+// =============================
+
+.beard {
+  @include el(white, 1.25, 1.5, 0 0 20vmin 20vmin);
+  position: absolute;
+  top: 55%;
+  box-shadow: var(--box-shadow-outer), var(--box-shadow-inner-dark);
+}
+
+
+// =============================
+// Ears
+// =============================
+
+.ear {
+  position: absolute;
+  top: 35%;
+  display: flex;
+  justify-content: center;
+  z-index: -1;
+  box-shadow: var(--box-shadow-outer), var(--box-shadow-inner);
+
+  &.left {
+    @include el(beige, 20, 6, 10vmin 0 0 10vmin);
+    right: 100%;
+    transform: translateX(0.001%);
+  }
+
+  &.right {
+    @include el(beige, 20, 6, 0 10vmin 10vmin 0);
+    left: 100%;
+    transform: translateX(-0.001%);
+  }
+}
+
+
+// =============================
+// Super nice :checked
+// =============================
+[id="hella-naughty"]:checked ~ .santa {
+  animation: hella-head-raise 600ms ease-out forwards;
+
+  .eye {
+    background-color: transparent;
+    animation: none;
+    z-index: 5;
+
+    &:before {
+      content: '🔥';
+      font-size: 3.5vmin;
+      position: absolute;
+      top: -1vmin;
+      animation: hella-eyes 400ms ease-out forwards;
+    }
+  }
+
+  .hat {
+    animation: hella-hat 1s cubic-bezier(0.215, 0.61, 0.355, 1) forwards;
+  }
+
+  .nose {
+    animation: hella-nose 400ms linear forwards;
+  }
+
+  .brow.left {
+    animation: hella-brow-left 400ms ease-out forwards;
+  }
+
+  .brow.right {
+    animation: hella-brow-right 400ms ease-out forwards;
+  }
+
+  .mustache {
+    &:before {
+      animation: hella-stache-left 400ms ease-out forwards;
+    }
+    &:after {
+      animation: hella-stache-right 400ms ease-out forwards;
+    }
+  }
+
+  @keyframes hella-head-raise {
+    5% { transform: translateY(10%) }
+    15% { transform: translateY(20%) }
+    25% { transform: translateY(5%) }
+    35% { transform: translateY(-5%) }
+    45% { transform: translateY(0) }
+  }
+
+  @keyframes hella-eyes {
+    50%, 70% { transform: scale(2) translateY(-25%) }
+  }
+
+  @keyframes hella-hat {
+    20% { transform: translateY(-25%) }
+    50% { transform: translateY(0) }
+  }
+
+  @keyframes hella-nose {
+    25%  { transform: translateY(40%) }
+    100% { transform: translateY(30%) }
+  }
+
+  @keyframes hella-stache-left {
+    50% { transform: rotate(20deg) }
+    100% { transform: rotate(15deg) }
+  }
+
+  @keyframes hella-stache-right {
+    50% { transform: rotate(-20deg) }
+    100% { transform: rotate(-15deg) }
+  }
+
+  @keyframes hella-brow-left {
+    50% { transform: translateY(-100%) rotate(5deg) }
+    100% { transform: translateY(-20%) rotate(15deg) }
+  }
+
+  @keyframes hella-brow-right {
+    50% { transform: translateY(-100%) rotate(-5deg) }
+    100% { transform: translateY(-20%) rotate(-15deg) }
+  }
+}
+
+
+// =============================
+// Naughty :checked
+// =============================
+[id="naughty"]:checked ~ .santa {
+  animation: naughty-head-raise 300ms ease-out forwards;
+
+  .eye {
+    animation: naughty-eye-raise 400ms ease-out forwards;
+  }
+
+  .brow.left {
+    animation: naughty-brow-left 400ms linear forwards;
+  }
+
+  .brow.right {
+    animation: naughty-brow-right 400ms linear forwards;
+  }
+
+  .mustache {
+    &:before {
+      animation: naughty-stache-left 600ms ease-out forwards;
+    }
+    &:after {
+      animation: naughty-stache-right 600ms ease-out forwards;
+    }
+  }
+
+  @keyframes naughty-head-raise {
+    50%, 100% { transform: translateY(2%) }
+  }
+
+  @keyframes naughty-eye-raise {
+    50%, 100% { transform: translateY(-25%) }
+  }
+
+  @keyframes naughty-stache-left {
+    50%, 100% { transform: rotate(5deg) }
+  }
+
+  @keyframes naughty-stache-right {
+    50%, 100% { transform: rotate(-5deg) }
+  }
+
+  @keyframes naughty-brow-left {
+    25% { transform: translateY(10%) }
+    50% { transform: translateY(0) rotate(2deg) }
+    70%, 100% { transform: translateY(-5%) rotate(5deg) }
+  }
+
+  @keyframes naughty-brow-right {
+    25% { transform: translateY(5%) }
+    50% { transform: translateY(0) rotate(-5deg) }
+    70%, 100% { transform: translateY(-25%) rotate(-5deg) }
+  }
+}
+
+
+// =============================
+// Nice :checked
+// =============================
+[id="nice"]:checked ~ .santa {
+  animation: head-raise 300ms ease-out forwards;
+
+  .mouth {
+    animation: mouth 400ms ease-out forwards;
+  }
+
+  .eye {
+    animation: eye-raise 400ms ease-out forwards;
+  }
+
+  .brow.left {
+    animation: brow-left 400ms ease-out forwards;
+  }
+
+  .brow.right {
+    animation: brow-right 400ms ease-out forwards;
+  }
+
+  .mustache {
+    &:before {
+      animation: stache-left 400ms ease-out forwards;
+    }
+    &:after {
+      animation: stache-right 400ms ease-out forwards;
+    }
+  }
+
+  @keyframes head-raise {
+    50%, 100% { transform: translateY(-2%) }
+  }
+
+  @keyframes eye-raise {
+    50%, 100% { transform: translateY(-25%) }
+  }
+
+  @keyframes mouth {
+    50%, 100% { transform: scaleY(0.75) }
+  }
+
+  @keyframes stache-left {
+    50%, 100% { transform: rotate(-5deg) }
+  }
+
+  @keyframes stache-right {
+    50%, 100% { transform: rotate(5deg) }
+  }
+
+  @keyframes brow-left {
+    50%, 100% { transform: translateY(-25%) rotate(-10deg) }
+  }
+
+  @keyframes brow-right {
+    50%, 100% { transform: translateY(-25%) rotate(10deg) }
+  }
+}
+
+
+// =============================
+// Super nice :checked
+// =============================
+[id="super-nice"]:checked ~ .santa {
+  animation: super-head-raise 600ms ease-out forwards;
+
+  .mouth {
+    animation: super-mouth 400ms ease-out forwards;
+  }
+
+  .eye {
+    background-color: transparent;
+    animation: none;
+    z-index: 5;
+
+    &:before {
+      content: '❤️';
+      font-size: 3.5vmin;
+      position: absolute;
+      top: -1vmin;
+      animation: super-eyes 400ms ease-out forwards;
+    }
+  }
+
+  .hat {
+    animation: super-hat 1s cubic-bezier(0.215, 0.61, 0.355, 1) forwards;
+  }
+
+  .nose {
+    animation: super-nose 400ms linear forwards;
+  }
+
+  .brow.left {
+    animation: super-brow-left 400ms ease-out forwards;
+  }
+
+  .brow.right {
+    animation: super-brow-right 400ms ease-out forwards;
+  }
+
+  .mustache {
+    &:before {
+      animation: super-stache-left 400ms ease-out forwards;
+    }
+    &:after {
+      animation: super-stache-right 400ms ease-out forwards;
+    }
+  }
+
+  @keyframes super-head-raise {
+    15% { transform: translateY(-10%) }
+    75% { transform: translateY(0) }
+  }
+
+  @keyframes super-eyes {
+    50%, 70% { transform: scale(2) translateY(-25%) }
+  }
+
+  @keyframes super-hat {
+    20% { transform: translateY(-15%) }
+    60% { transform: translateY(0) }
+  }
+
+  @keyframes super-nose {
+    25% { transform: translateY(-5%) }
+    75% { transform: translateY(0) }
+  }
+
+  @keyframes super-mouth {
+    50%, 100% { transform: scaleY(1) }
+  }
+
+  @keyframes super-stache-left {
+    50% { transform: translateY(-2%) rotate(-15deg) }
+    75%, 100% { transform: rotate(-5deg) }
+  }
+
+  @keyframes super-stache-right {
+    50% { transform: translateY(-2%) rotate(15deg) }
+    75%, 100% { transform: rotate(5deg) }
+  }
+
+  @keyframes super-brow-left {
+    50% { transform: translateY(-100%) rotate(-15deg) }
+    100% { transform: translateY(-20%) rotate(-5deg) }
+  }
+
+  @keyframes super-brow-right {
+    50% { transform: translateY(-100%) rotate(5deg) }
+    100% { transform: translateY(-20%) rotate(5deg) }
+  }
+}
+#giftContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+/**** GIFT ****/
+.gift {
+margin-top: 2rem;
+  top: 50%;
+  left: 50%;
+  width: 300px;
+  height: 300px;
+
+  cursor: pointer;
+  @media (max-width: 800px) {
+    height: 200px;
+    width: 200px;
+  }
+}
+
+.gift-top {
+  position: relative;
+  width: 100%;
+  height: 25%;
+  background: #f54537;
+  border-radius: 5px 5px 0 0;
+  background-image: linear-gradient(
+    to right,
+    #f54537 0%,
+    #f54537 44%,
+    #ffc113 44%,
+    #ffc113 56%,
+    #f54537 56%,
+    #f54537 100%
+  );
+}
+
+.gift-top.hovered {
+  animation: shake 3s infinite;
+  -webkit-animation: shake 3s infinite;
+  -moz-animation: shake 3s infinite;
+  -ms-animation: shake 3s infinite;
+  -o-animation: shake 3s infinite;
+}
+
+.gift-bottom.fadeout {
+  -webkit-animation-name: fadeOutDown;
+  animation-name: fadeOutDown;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+
+.gift-top.fadeout {
+  -webkit-animation-name: rotateOutUpRight;
+  animation-name: rotateOutUpRight;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+
+.gift-top::before,
+.gift-top::after {
+  content: "";
+  width: 15px;
+  height: 15px;
+  border: 10px solid #ffc113;
+  border-radius: 50% 50% 0 50%;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate3d(-100%, -100%, 0) skew(10deg, 10deg);
+}
+
+.gift-top::after {
+  border-radius: 50% 50% 50% 0;
+  transform: translate3d(0, -100%, 0) skew(-10deg, -10deg);
+}
+
+.gift-text {
+  text-align: center;
+  font-weight:400;
+}
+
+.gift-final-text {
+  text-align: center;
+  font-size: 33px;
+  display: none;
+}
+
+.gift-bottom {
+  width: 95%;
+  height: 75%;
+  margin: 0 auto;
+  background-image: linear-gradient(
+    to right,
+    #f54537 0%,
+    #f54537 45%,
+    #ffc113 45%,
+    #ffc113 55%,
+    #f54537 55%,
+    #f54537 100%
+  );
+  border-radius: 0 0 5px 5px;
+}
+
+.gift-card-text {
+  display: none;
+  font-size: 33px;
+  top: 50%;
+  left: 50%;
+  transform: translate3d(-50%, -50%, 0);
+  position: absolute;
+  width: 100%;
+}
+
+.lbWrapper {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  background: rgba(0, 0, 0, 0.8);
+  padding: 0;
+  z-index: 10;
+  top: 0;
+  left: 0;
+  color: #fff;
+  display: none;
+}
+
+.signupWrapper {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  display: none;
+}
+
+.signupWrapper .error {
+  display: none;
+  color: #ff0000;
+  text-align: center;
+}
+
+.signupWrapper .signUpTitle {
+  text-align: center;
+  font-size: 20px;
+  text-transform: uppercase;
+}
+
+.signupWrapper .mlistWrapper {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.signupWrapper input#email {
+  width: 150px;
+  border: none;
+  box-shadow: none;
+  padding: 5px;
+}
+
+.signupWrapper input.submit {
+  padding: 4px 10px;
+  cursor: pointer;
+}
+
+#snow {
+  width: 100%;
+}
+
+@keyframes shake {
+  0% {
+    transform: rotate(0deg);
+  }
+  12% {
+    transform: rotate(-10deg);
+  }
+  25% {
+    transform: rotate(10deg);
+  }
+  37% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+@-webkit-keyframes shake {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+  12% {
+    -webkit-transform: rotate(-10deg);
+  }
+  25% {
+    -webkit-transform: rotate(10deg);
+  }
+  37% {
+    -webkit-transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(0deg);
+  }
+}
+
+@-moz-keyframes shake {
+  0% {
+    -moz-transform: rotate(0deg);
+  }
+  12% {
+    -moz-transform: rotate(-10deg);
+  }
+  25% {
+    -moz-transform: rotate(10deg);
+  }
+  37% {
+    -moz-transform: rotate(0deg);
+  }
+  100% {
+    -moz-transform: rotate(0deg);
+  }
+}
+
+@-ms-keyframes shake {
+  0% {
+    -ms-transform: rotate(0deg);
+  }
+  12% {
+    -ms-transform: rotate(0deg);
+  }
+  25% {
+    -ms-transform: rotate(10deg);
+  }
+  37% {
+    -ms-transform: rotate(0deg);
+  }
+  100% {
+    -ms-transform: rotate(0deg);
+  }
+}
+
+@-o-keyframes shake {
+  0% {
+    -o-transform: rotate(0deg);
+  }
+  12% {
+    -o-transform: rotate(0deg);
+  }
+  25% {
+    -o-transform: rotate(10deg);
+  }
+  37% {
+    -o-transform: rotate(0deg);
+  }
+  100% {
+    -o-transform: rotate(0deg);
+  }
+}
+
+@-webkit-keyframes fadeOutDown {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    -webkit-transform: translate3d(0, 100%, 0);
+    transform: translate3d(0, 100%, 0);
+  }
+}
+
+@keyframes fadeOutDown {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    -webkit-transform: translate3d(0, 100%, 0);
+    transform: translate3d(0, 100%, 0);
+  }
+}
+
+@-webkit-keyframes rotateOutUpRight {
+  0% {
+    -webkit-transform-origin: right bottom;
+    transform-origin: right bottom;
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform-origin: right bottom;
+    transform-origin: right bottom;
+    -webkit-transform: rotate3d(0, 0, 1, 90deg);
+    transform: rotate3d(0, 0, 1, 90deg);
+    opacity: 0;
+  }
+}
+
+@keyframes rotateOutUpRight {
+  0% {
+    -webkit-transform-origin: right bottom;
+    transform-origin: right bottom;
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform-origin: right bottom;
+    transform-origin: right bottom;
+    -webkit-transform: rotate3d(0, 0, 1, 90deg);
+    transform: rotate3d(0, 0, 1, 90deg);
+    opacity: 0;
+  }
+}
+
+/* Presentens stilar ... */
+
+/* Modal stilar */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: 30% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* Lägg till stilar för formen om nödvändigt */
